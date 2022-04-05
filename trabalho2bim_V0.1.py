@@ -2,7 +2,7 @@
 class Cidade:
     def __init__(self, nome, distanciaCapital, *distanciaVizinhos, vizinhos):
         self.nome = nome
-        self.distanciaVizinhos = list(distanciaVizinhos)
+        self.distanciaVizinhos = distanciaVizinhos
         self.vizinhos = list(vizinhos)
         self.proximo = None
         self.distanciaCapital = distanciaCapital  # distancia em linha reta da cidade ate a capital, Vitoria
@@ -55,11 +55,11 @@ def menor_distancia_heuristica(cidade_atual, cities):
     for linha in cities:
         if linha['codigo'] in indice_vizinhos:
             distancia_vizinhos_capital.append(cities[linha['codigo']]['cidade'].distanciaCapital)
-    distancia_atual_vizinhos = list(cidade_atual.distanciaVizinhos)
+    distancia_atual_vizinhos = cidade_atual.distanciaVizinhos
     #    distancia_atual_vizinhos = list(cidade_atual.distanciaVizinhos[0])
     soma_distancias = []
     for i in range(len(distancia_vizinhos_capital)):
-        soma_distancias.append(distancia_atual_vizinhos[0][i] + distancia_vizinhos_capital[i])
+        soma_distancias.append(distancia_atual_vizinhos[i] + distancia_vizinhos_capital[i])
 
     for j, soma in enumerate(soma_distancias):
         if soma == min(soma_distancias):
